@@ -11,6 +11,8 @@ services:
       - mongodb:/etc/mongo
       - mongodb:/data/configdb
     network_mode: bridge
+    logging:
+      driver: syslog
   # Elasticsearch: http://www.elastic.co/guide/en/elasticsearch/reference/7.10/docker.html
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2
@@ -28,6 +30,9 @@ services:
     volumes:
       - elasticsearch:/usr/share/elasticsearch/data
     network_mode: bridge
+    logging:
+      driver: syslog
+
   # Graylog: https://hub.docker.com/r/graylog/graylog/
   graylog:
     image: graylog/graylog:4.0
@@ -61,10 +66,10 @@ services:
       - graylog:/etc/graylog
       - graylog:/usr/share/graylog/data
     network_mode: bridge
+    logging:
+      driver: syslog
 
 volumes:
   mongodb:
   elasticsearch:
   graylog:
-logging:
-   driver: syslog
