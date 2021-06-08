@@ -1,4 +1,4 @@
-version: 2
+version: "2"
 services: 
    homer:
       image: b4bz/homer:latest
@@ -8,8 +8,6 @@ services:
       volumes:
          - homer:/www/assets
       logging:
-         driver: syslog
-         log-level: WARNING
-         
+         driver: "syslog"
 volumes:
    homer:
