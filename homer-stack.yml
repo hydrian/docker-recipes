@@ -1,0 +1,15 @@
+version: 2
+services: 
+   homer:
+      image: b4bz/homer:latest
+      ports:
+         # HTTP Port
+         - "8081:8080"
+      volumes:
+         - homer:/www/assets
+      logging:
+         driver: syslog
+         log-level: WARNING
+         
+volumes:
+   homer:
