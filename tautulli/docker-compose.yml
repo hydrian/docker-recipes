@@ -1,0 +1,18 @@
+version: "2"
+services: 
+   tautulli:
+      container_name: tautulli
+      environment:
+       # - PUID=
+       # - PGID= 
+        - TZ=America/New_York
+      image: ghcr.io/tautulli/tautulli
+      ports:
+         # HTTP Port
+         - "8181:8181"
+      volumes:
+         - tautulli:/config
+      logging:
+         driver: "syslog"
+volumes:
+   tautulli:
