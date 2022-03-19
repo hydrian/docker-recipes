@@ -1,0 +1,35 @@
+version: "2.1"
+services: 
+   webtrees:
+      container_name: webtrees
+      environment:
+       # - GROUP_ID=
+       # - PUID=
+       # - PGID= 
+       - BASE_URL=https://webtrees.tygerclan.int:${WT_PORT}/
+       - DISABLE_SSL=FALSE
+       - DB_USER=${WT_DB_USERNAME}
+       - DB_PASSWORD=${WT_DB_PASSWORD}
+       - DB_HOST=${WT_DB_HOST}
+       - DB_NAME=${WT_DB_NAME}
+       - DB_PORT=${WT_DB_PORT}
+       - PORT=${WT_PORT}
+       - PRETTYURLS=TRUE
+       - USE_REMOTE_USER=FALSE
+       - WT_ADMIN=${WT_ADMIN_USERNAME:-admin}
+       - WT_ADMINPW=${WT_ADMIN_PASSWORD}
+       - WT_ADMINMAIL=${WT_ADMIN_EMAIL}
+       
+      image: dtjs48jkt/webtrees
+      ports:
+         # HTTP Port
+         - "8079:8079"
+      restart: always
+      volumes:
+         - webtrees:/var/www/html/data
+         - /etc/localtime:/etc/localtime:ro
+         - /etc/resolv.conf:/etc/resolv.conf:ro 
+      logging:
+         driver: "syslog"
+volumes:
+   webtrees:
